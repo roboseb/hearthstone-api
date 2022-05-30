@@ -8,15 +8,45 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <img src="images/backdrop.png" alt="Entomb card art" id='backdrop'>
     <div id='container'>
-        <h1>Seb's Hearthstone API</h1>
-        <h3 id='setname'></h3>
-        <h3 id='cost'></h3>
-        <h2 id='right'>Correct: 0</h2>
-        <h2 id='wrong'>Wrong: 0</h2>
-        <button id='resetbtn'>Reset</button>
-        <button id='soundbtn'>Sound</button>
+        <h1 id='headerleft'>Seb's Hearthstone</h1>
+        <h1 id='headerright'>Card Cost Quiz</h1>
+        <div id='topinfo'>
+            <h3 id='setname'>Seb's Set</h3>
+            <h3 id='cost'></h3>
+            <img id='biggem' src="images/biggemblood.png" alt="a bleeding gem">
+        </div>
+
+
         <div id='imgbox'></div>
+
+        <div id='bottominfo'>
+            
+            <div id='btnbox'>
+                
+                
+                <div id='resetbox'>
+                    <button id='resetbtn'>Reset</button>
+                </div>
+                <div id='soundbox'>
+                    <button id='soundbtn'>Sound</button>
+                </div>
+
+                <div id='rightbox'>
+                    <div id='right'>0 Right</div>
+                </div>
+                <div id='wrongbox'>
+                    <div id='wrong'>Wrong 0</div>
+                </div>
+                
+                
+            </div>
+            
+
+        </div>
+
+        
         <script src='script.js'></script>
     </div>
 </body>

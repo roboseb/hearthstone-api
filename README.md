@@ -12,6 +12,16 @@ May 27th. 2022
 
     Also, just to jinx myself, I'll say that this will be done by end of day tomorrow.
 
+May 29th, 2022
+
+    By tomorrow, I meant today. Yesterday was the first day I took as a day off on purpose in a while. Not sick or anything, just a day off. Was real nice. Go play Witcher 3, it's real good.
+
+    The hearthstone API I was using is down. I think hearthstone has an official API that I could try switching to, but it may be far easier to just use a set 9 cards to style the UI with and then reimplement the API when it's back up.
+
+    Took one hour to find out the API issue and then replace it with hard-coded local cards. Probably better than spending a full day replacing the entire API. Of course, if the API doesn't start working again, then this was stupid as well.
+
+    So, I guess if you refreshing saves your scroll position, and if you change your elements so that there is no longer scrolling, you will be locked scrolled partly down into nothing until the next hard refresh. Spent about an hour learning that.
+
 
 ---To-Do---
 
@@ -26,3 +36,5 @@ DONE-Ignore cards that are not collectible
 -maybe give no options to make this a cool, but brief project
 -Dom elements bounce to the beat like in mario, but cooler
 -hide either card art or text, randomly, but always cost
+-cool fonts
+-animation for changing card set letter by letter

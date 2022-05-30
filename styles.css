@@ -1,41 +1,241 @@
+@font-face {
+    font-family: dimitri;
+    src: url(DIMIS___.TTF);
+}
+
+@font-face {
+    font-family: ancient;
+    src: url(Ancient_Medium.ttf);
+}
+
+
 body {
     background-color: darksalmon;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
+    font-family: dimitri, sans-serif;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
 }
 
+#backdrop {
+    position: absolute;
+    top: 0;
+    width: 2000px;
+}
+
+
 #container {
-    background-color: darkturquoise;
     width: 60vw;
     max-width: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    position: relative;
+    justify-content: space-between;
+}
+
+#container>#headerleft {
+    position: absolute;
+    transform-origin: top left;
+    left: -5rem;
+    bottom: 10rem;
+    transform: rotate(-90deg);
+    font-size: 4rem;
+    margin: 0;
+    display: inline;
+    white-space: nowrap;
+}
+
+#container>#headerright {
+    position: absolute;
+    transform-origin: top right;
+    right: -5rem;
+    bottom: 10rem;
+    transform: rotate(90deg);
+    font-size: 4rem;
+    margin: 0;
+    white-space: nowrap;
+}
+
+#topinfo {
+    background-color: red;
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+    
+}
+
+#topinfo>#setname {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+    background-color: #fff;
+    font-size: 6rem;
+    margin: 0;
+    line-height: 6rem;
+    white-space: nowrap;
+}
+
+#topinfo>#cost {
+    position: absolute;
+    right: -8rem;
+    top: 2rem;
+    background-color: transparent;
+    font-size: 13rem;
+    font-family: ancient, sans-serif;
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+    height: 13rem;
+    width: 13rem;
+    line-height: 13rem;
+    text-align: center;
+    border-radius: 100%;
+    z-index: 1;
+    color: white;
+    -webkit-text-stroke: 5px black;
+}
+
+#topinfo>#biggem {
+    position: absolute;
+    right: -8rem;
+    top: 1rem;
+    height: 280px;
 }
 
 #imgbox {
-    background-color: #fff;
     height: 400px;
     width: 100%;
     position: relative;
     display: grid;
     grid-template-columns: auto auto auto;
-}
-
-img {
-    width: 100%;
-    transition: all 1s;
+    grid-template-rows: auto auto auto;
+    flex-grow: 0.2;
 }
 
 #imgbox>#cardbox {
     position: relative;
 }
 
-#cardbox:nth-child(1n+7)>img {
+#imgbox>#cardbox>img:not(.cardborder) {
     position: absolute;
-    top: -50px;
-    width: 500px;
+    bottom: -20px;
+    width: 100%;
+    filter: drop-shadow(0px -10px 5px black);
+    max-width: 215px;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#imgbox>#cardbox:hover {
+    z-index: 3;
+}
+
+#imgbox>#cardbox>img.blankgem {
+    filter: none;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#imgbox>#cardbox>img.cardborder {
+    position: absolute;
+    bottom: -30px;
+    width: 110%;;
+    max-width: 240px;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: brightness(0) opacity(0);
+    transition: all 0.6s;
+}
+
+
+
+#bottominfo {
+    background-color:red;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    align-items: center;
+    justify-content: end;
+    font-family: ancient, sans-serif;
+    
+}
+
+#btnbox {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    position: relative;
+    justify-content: center;
+}
+
+#rightbox, #wrongbox {
+    font-size: 6rem;
+    position: absolute;
+    perspective-origin: 50% 50%;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+#rightbox {
+    transform: translate(-60%, 0);
+    perspective: 260px;
+}
+
+#wrongbox {
+    right: 0;
+    transform: translate(60%, 0);
+    perspective: 260px;
+}
+
+
+
+#right {
+    transform: scaleX(1) scaleY(1) scaleZ(1) rotateY(52deg);
+    background-color: #fff;
+    padding: 15px;
+    border: solid 10px black;
+}
+
+#wrong {
+    transform: scaleX(1) scaleY(1) scaleZ(1) rotateY(-52deg);
+    background-color: #fff;
+    padding: 15px;
+    border: solid 10px black;
+}
+
+#btnbox>#resetbox, #btnbox>#soundbox {
+    display: flex;
+    justify-content: center;
+    perspective: 564px;
+    perspective-origin: 50% 50%;
+}
+
+#btnbox button {
+    box-sizing: border-box;
+    font-size: 3rem;
+    font-family: dimitri, sans-serif;
+    border: solid 10px black;
+    height: 150px;
+    z-index: 0;
+}
+
+button#resetbtn {
+    transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(50deg);
+    margin-bottom: -22px;
+}
+
+button#soundbtn {
+    transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(-50deg);
+    margin-top: -22px;
 }
