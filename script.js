@@ -12,6 +12,7 @@ const setNameDisplay = document.getElementById('setname');
 const costDisplay = document.getElementById('cost');
 
 const resetButton = document.getElementById('resetbtn');
+const soundButton = document.getElementById('soundbtn');
 const rightDisplay = document.getElementById('right');
 const wrongDisplay = document.getElementById('wrong');
 
@@ -19,6 +20,11 @@ let right = 0;
 let wrong = 0;
 
 resetButton.addEventListener('click', () => {
+    //Animate the button.
+    resetButton.classList.remove('resetclicked');
+    void resetButton.offsetWidth;
+    resetButton.classList.add('resetclicked');
+
     //Reset cards being displayed.
     const cards = Array.from(imageBox.children);
     cards.forEach(card => {
@@ -26,6 +32,17 @@ resetButton.addEventListener('click', () => {
     });
 
     showCards();
+
+    //Update gifs.
+    gifDisplay1();
+    gifDisplay2();
+});
+
+soundButton.addEventListener('click', () => {
+        //Animate the button.
+        soundButton.classList.remove('soundclicked');
+        void soundButton.offsetWidth;
+        soundButton.classList.add('soundclicked');
 });
 
 
@@ -98,9 +115,6 @@ const showCards = () => {
 
 
 
-
-
-
     const createCard = (setObj) => {
         
         //Get the set size, and choose a random index from it.
@@ -130,6 +144,7 @@ const showCards = () => {
         cardBox.id ='cardbox';
         const cardDisplay = document.createElement('img');
         cardDisplay.src = cardArt;
+        cardDisplay.id = cardObj.name;
 
         //Add a blank gem to hide card cost.
         const blankGem = document.createElement('img');
@@ -158,7 +173,7 @@ const showCards = () => {
             if (parseInt(costDisplay.innerText) === cardObj.cost) {
                 right++;
                 rightDisplay.innerText = `Right: ${right}`;
-                cardDisplay.style.height = '400px';
+                cardDisplay.style.filter = 'invert(80%)';
             } else {
                 wrong++;
                 wrongDisplay.innerText = `Wrong: ${wrong}`;
@@ -178,13 +193,27 @@ const showCards = () => {
                         cardsLeft ++;
                 }
             });
-            //console.log(cardsLeft);
-            if (cardsLeft > 0) {
-                console.log('there are still cards left to get')
-            } else {
-                console.log('you found all the cards!')
-         
-            }
+            
+            //Reveal all cards when all correct are found, and prevent
+            //the player from adding to wrong or right on click.
+            if (cardsLeft === 0) {
+
+                //Find all unclicked card objects.
+                cardList.forEach(card => {
+                    if (!card.clicked) {
+                        card.clicked = true;
+                        const cardsDisplayed = Array.from(document.querySelectorAll('img'));
+                        cardsDisplayed.forEach(display => {
+                            
+                            //Find dom element for selected card object.
+                            if (display.id === card.name) {
+                                display.style.filter = 'drop-shadow(0px -10px 5px black) opacity(0.5)';
+                                display.style.pointerEvents = 'none';
+                            }
+                        });
+                    }
+                });
+            } 
         });
 
         //Add border effect on hover.
@@ -245,8 +274,35 @@ const showCards = () => {
     })();
 }
 
-showCards();
+gifDisplay1 = () => {
+  
+    const img = document.querySelector('#gif1');
+    fetch('https://api.giphy.com/v1/gifs/translate?api_key=V0SMG7av3YOhvR1oxnCOspOUd4EGpAC7&s=creepy death', {mode: 'cors'})
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response) {
+            img.src = response.data.images.original.url;
+        });
 
+}
+
+gifDisplay2 = () => {
+  
+    const img = document.querySelector('#gif2');
+    fetch('https://api.giphy.com/v1/gifs/translate?api_key=V0SMG7av3YOhvR1oxnCOspOUd4EGpAC7&s=creepy skull', {mode: 'cors'})
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response) {
+            img.src = response.data.images.original.url;
+        });
+
+}
+
+showCards();
+gifDisplay1();
+gifDisplay2();
 
 
 

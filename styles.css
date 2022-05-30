@@ -8,6 +8,17 @@
     src: url(Ancient_Medium.ttf);
 }
 
+@font-face {
+    font-family: dimitri-light;
+    src: url(DIMITRI_.TTF);
+}
+
+@media only screen and (min-width: 1500px) {
+    #kanatop, #kanabottom, #gif1, #gif2 {
+        display: block !important;
+    }
+}
+
 
 body {
     background-color: darksalmon;
@@ -27,10 +38,44 @@ body {
     width: 2000px;
 }
 
+#kanatop, #kanabottom {
+    font-family: sans-serif;
+    position: absolute;
+    display: none;
+}
+
+#kanatop {
+    top: 0;
+    left: 0;
+    font-size: 8rem;
+    font-weight: bolder;
+    line-height: 7rem;
+}
+
+#kanabottom {
+    bottom: 0;
+    left: 0;
+    font-size: 3rem;
+}
+
+#gif1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+#gif2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: none;
+}
+
 
 #container {
     width: 60vw;
-    max-width: 900px;
+    max-width: 648px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,28 +87,28 @@ body {
 #container>#headerleft {
     position: absolute;
     transform-origin: top left;
-    left: -5rem;
-    bottom: 10rem;
+    left: -8rem;
+    bottom: -6rem;
     transform: rotate(-90deg);
-    font-size: 4rem;
+    font-size: 6rem;
     margin: 0;
     display: inline;
     white-space: nowrap;
+    
 }
 
 #container>#headerright {
     position: absolute;
     transform-origin: top right;
-    right: -5rem;
-    bottom: 10rem;
+    right: -8rem;
+    bottom: 6rem;
     transform: rotate(90deg);
-    font-size: 4rem;
+    font-size: 6rem;
     margin: 0;
     white-space: nowrap;
 }
 
 #topinfo {
-    background-color: red;
     display: flex;
     flex-grow: 1;
     position: relative;
@@ -72,11 +117,11 @@ body {
 }
 
 #topinfo>#setname {
+    font-family: dimitri-light, sans-serif;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top: 20%;
-    background-color: #fff;
     font-size: 6rem;
     margin: 0;
     line-height: 6rem;
@@ -128,11 +173,12 @@ body {
     position: absolute;
     bottom: -20px;
     width: 100%;
-    filter: drop-shadow(0px -10px 5px black);
+    filter: drop-shadow(0px -10px 5px black) opacity(1);
     max-width: 215px;
     z-index: 1;
     left: 50%;
     transform: translateX(-50%);
+    transition: all 1s;
 }
 
 #imgbox>#cardbox:hover {
@@ -157,18 +203,13 @@ body {
     transition: all 0.6s;
 }
 
-
-
 #bottominfo {
-    background-color:red;
     display: flex;
     flex-direction: column;
     width: 100%;
-
     align-items: center;
     justify-content: end;
-    font-family: ancient, sans-serif;
-    
+    font-family: ancient, sans-serif; 
 }
 
 #btnbox {
@@ -184,6 +225,7 @@ body {
     position: absolute;
     perspective-origin: 50% 50%;
     white-space: nowrap;
+    transition: all 1s;
     pointer-events: none;
 }
 
@@ -198,13 +240,15 @@ body {
     perspective: 260px;
 }
 
-
-
 #right {
     transform: scaleX(1) scaleY(1) scaleZ(1) rotateY(52deg);
-    background-color: #fff;
+    background-color: turquoise;
     padding: 15px;
     border: solid 10px black;
+    transition: all 10s;
+    pointer-events: all;
+    background: rgb(23,138,129);
+    background: linear-gradient(213deg, rgba(23,138,129,1) 0%, rgba(213,255,252,1) 100%);
 }
 
 #wrong {
@@ -212,6 +256,18 @@ body {
     background-color: #fff;
     padding: 15px;
     border: solid 10px black;
+    transition: all 10s;
+    pointer-events: all;
+    background: rgb(23,138,129);
+    background: linear-gradient(213deg, rgba(23,138,129,1) 0%, rgba(213,255,252,1) 100%);
+}
+
+#right:hover {
+    transform: scaleX(1) scaleY(1) scaleZ(1) rotateY(4000deg);
+}
+
+#wrong:hover {
+    transform: scaleX(1) scaleY(1) scaleZ(1) rotateY(-4000deg);
 }
 
 #btnbox>#resetbox, #btnbox>#soundbox {
@@ -224,18 +280,52 @@ body {
 #btnbox button {
     box-sizing: border-box;
     font-size: 3rem;
-    font-family: dimitri, sans-serif;
+    font-family: dimitri-light, sans-serif;
     border: solid 10px black;
     height: 150px;
     z-index: 0;
+    color: white;
+    transition: all 0.4s;
+}
+
+#btnbox button:hover {
+    filter: brightness(200%);
+}
+
+#btnbox button.resetclicked {
+    animation: resetclicked 0.6s;
+}
+
+#btnbox button.soundclicked {
+    animation: soundclicked 0.6s;
+}
+
+@keyframes resetclicked{
+    0% {transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(50deg);}
+    50% {transform: scaleX(0.93) scaleY(0.5) scaleZ(1) rotateX(50deg) translateY(52px);}
+    100% {transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(50deg);}
+}
+
+@keyframes soundclicked{
+    0% {transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(-50deg);}
+    50% {transform: scaleX(0.93) scaleY(0.5) scaleZ(1) rotateX(-50deg) translateY(-52px);}
+    100% {transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(-50deg);}
 }
 
 button#resetbtn {
     transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(50deg);
     margin-bottom: -22px;
+    background-image: url(images/bearbutton.png);
+    background-position: center;
+    background-size: cover;
+    box-shadow: inset 2px 45px 30px -20px #000000;
 }
 
 button#soundbtn {
     transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(-50deg);
     margin-top: -22px;
+    background-image: url(images/lionbutton.png);
+    background-position: center;
+    background-size: cover;
+    box-shadow: inset 2px -50px 30px -20px #000000;
 }
